@@ -1,0 +1,47 @@
+EVALUATION CRUD
+
+1) Modèle :
+
+src/Entity/Livres = table de la base de données examen composée des attributs suivants :
+* l’identifiant
+* le nom du livre
+* le nom de l’auteur du livre
+* un avis
+* une note
+* la date de création et la date de modification
+
+POUR INFO : capture d'écran de la base de données à la racine du projet = DB_examen.png
+
+
+2) Vues : 
+
+templates/livre/index.html.twig = la page d’accueil de cette application composée de :
+* un bouton  pour accéder à un formulaire afin d’ajouter un nouveau livre
+* un tableau recensant les livres déjà ajoutés à la base de données
+
+NB : Pour chacun des livres ajoutés à la liste, l’utilisateur pourra
+modifier ses informations et le supprimer.
+
+template/livre/ajout.html.twig = le formulaire d'ajout de livre composé des inputs suivants : 
+* le nom du livre
+* le nom de l’auteur du livre
+* un avis
+* une note
+NB : l'id est auto-incrémenté par MySQL, la date de création et la date de modification sont automatisées + formatées au bon fuseau horaire grâce à la foncition déclarée ans le Kernel.
+
+template/base.html.twig = le tempalte de base des pages composé des éléments html suivants : 
+* le DOCTYPE 
+* le head
+* les CDN de Bootstrap
+
+
+3) Controller : 
+src/Controller/LivresController = unique controller composé de 4 routes =
+
+* #[Route('/', name: 'app.livre')]
+
+* #[Route('/ajout', name: 'ajout.livre', methods: ['GET', 'POST'])]
+
+* #[Route('/modifier/{id<\d+>}', name: 'modifier.livre', methods: ['GET', 'POST'])]
+
+* #[Route('/supprimer/{id<\d+>}', name: 'supprimer.livre', methods: ['POST'])]
