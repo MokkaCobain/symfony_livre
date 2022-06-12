@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des livres{% endblock %}
+
+{% block content %}
+
+    <h1 class="text-center my-3 display-5">Bienvenue</h1>
+
+        {% for message in app.flashes('success') %}
+
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        
+            
+        {% endfor %}
+
+    <div class="d-flex justify-content-start align-items-center my-3">
+        <a href="{{ path('ajout.livre') }}" class="btn btn-primary">Ajouter un livre</a>
+    </div>
+
+    <div class="container bg-light d-flex justify-content-center">
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Titre</th>
+                    <th scope="col">Auteur/Autrice</th>
+                    <th scope="col">Avis</th>
+                    <th scope="col">Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if livres|length == 0 %}
+                <tr>
+                    <td class="mt-5 lead text-center">Aucun livre recensé...</td>
+                </tr>
+                {% endif %}
+                {% for livre in livres %}
+                <tr>
+                    <td>{{ livre.title }}</td>
+                    <td>{{ livre.author }}</td>
+                    <td>{{ livre.notice }}</td>
+                    <td>{{ livre.note }}</td>
+                    <td>
+                        <a href="{{ path('modifier.livre', {'id' : livre.id}) }}" class="btn btn-primary sm btn-secondary mb-1">Modifier</a>
+                    </td>
+                    <td>
+                        <form action="{{ path('supprimer.livre', {'id' : livre.id}) }}" method="POST">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ livre.id) }}" />
+                            <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('Confirmer la suppression ?')">
+                        </form>
+                    </td>
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+            
+            
+           
+
+
+        </table>
+        
+
+{% endblock %}

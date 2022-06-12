@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center my-3 display-5">Ajouter un livre</h1>
+
+
+<div class="container">
+
+    {{ form_start(livre_form) }}
+
+    <div class="mb-3">
+        <label for="">Titre :</label>
+
+        {{ form_widget(livre_form.title, {'attr' : {'class' : 'form-control bg-white'} } ) }}
+
+        <div class="text-danger">
+            {{ form_errors(livre_form.title) }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="">Auteur/Autrice :</label>
+
+        {{ form_widget(livre_form.author, {'attr' : {'class' : 'form-control bg-white'} } ) }}
+
+        <div class="text-danger">
+            {{ form_errors(livre_form.author) }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="">Avis :</label>
+
+        {{ form_widget(livre_form.notice, {'attr' : {'class' : 'form-control bg-white'} } ) }}
+
+        <div class="text-danger">
+            {{ form_errors(livre_form.notice) }}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="">Note :</label>
+
+        {{ form_widget(livre_form.note, {'attr' : {'class' : 'form-control bg-white'} } ) }}
+
+        <div class="text-danger">
+            {{ form_errors(livre_form.note) }}
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-success" formnovalidate value="Ajouter">
+
+    {{ form_end(livre_form) }}
+
+
+</div>
+
+{% endblock %}
